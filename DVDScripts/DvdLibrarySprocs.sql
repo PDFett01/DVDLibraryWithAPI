@@ -1,0 +1,173 @@
+USE [DVDLibrary]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[AddDVD](
+			@Title VARCHAR(50),
+			@ReleaseDate VARCHAR(4),
+			@Director VARCHAR(20),
+			@Rating VARCHAR(4),
+			@Notes VARCHAR(100)	)
+AS
+BEGIN
+	SET NOCOUNT ON;
+INSERT INTO DVD (Title, ReleaseDate, Director, Rating, Notes)
+VALUES (@Title, @ReleaseDate, @Director, @Rating, @Notes);
+END
+
+GO
+
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[DeleteDVD](
+			@DVDId int	)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DELETE FROM DVD
+	WHERE @DVDId = DVDId
+END
+
+GO
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[EditDVD](
+			@DVDId int,
+			@Title VARCHAR(50),
+			@ReleaseDate VARCHAR(4),
+			@Director VARCHAR(20),
+			@Rating VARCHAR(4),
+			@Notes VARCHAR(100)	)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	UPDATE DVD
+	SET Title = @Title, ReleaseDate = @ReleaseDate, Director = @Director, Rating = @Rating, Notes = @Notes
+	WHERE @DVDId = DVDId
+END
+
+
+GO
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[GetAllDVDs]
+
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT * FROM DVD
+END
+
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[GetAllDVDsByDirector](
+			@Director VARCHAR(20)	)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT * FROM DVD
+	WHERE @Director = Director
+END
+
+GO
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[GetAllDVDsByRating](
+			@Rating VARCHAR(4)	)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT * FROM DVD
+	WHERE @Rating = Rating
+END
+
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[GetAllDVDsByTitle](
+			@Title VARCHAR(50)	)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT * FROM DVD
+	WHERE @Title = Title
+END
+
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[GetAllDVDsByYear](
+			@ReleaseDate VARCHAR(4)	)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT * FROM DVD
+	WHERE @ReleaseDate = ReleaseDate
+END
+
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[GetDVDById](
+			@DVDId int	)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT DVDId, Title, ReleaseDate, Director, Rating, Notes From DVD
+	WHERE @DVDId = DVDId
+END
+
+GO

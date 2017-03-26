@@ -1,0 +1,30 @@
+USE master
+GO
+
+CREATE LOGIN DvdLibraryApp WITH PASSWORD = 'testing123'
+GO
+
+USE DVDLibrary
+GO
+
+CREATE USER DvdLibraryApp FOR LOGIN DvdLibraryApp
+GO
+
+
+GRANT EXECUTE ON AddDVD TO DvdLibraryApp
+GRANT EXECUTE ON DeleteDVD TO DvdLibraryApp
+GRANT EXECUTE ON EditDVD TO DvdLibraryApp
+GRANT EXECUTE ON GetAllDVDs TO DvdLibraryApp
+GRANT EXECUTE ON GetAllDVDsByDirector TO DvdLibraryApp
+GRANT EXECUTE ON GetAllDVDsByRating TO DvdLibraryApp
+GRANT EXECUTE ON GetAllDVDsByTitle TO DvdLibraryApp
+GRANT EXECUTE ON GetAllDVDsByYear TO DvdLibraryApp
+GRANT EXECUTE ON GetDVDById TO DvdLibraryApp
+Go
+
+
+GRANT SELECT ON DVD TO DvdLibraryApp
+GRANT INSERT ON DVD TO DvdLibraryApp
+GRANT UPDATE ON DVD TO DvdLibraryApp
+GRANT DELETE ON DVD TO DvdLibraryApp
+GO
